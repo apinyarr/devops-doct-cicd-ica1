@@ -24,4 +24,12 @@ jobs:
     - name: Check Pytest
       run: python3 ./swagger_server/libs/test_regression_project.py
 
+    - name: Build Docker Image
+      run: docker build -t apinyarr/devops-doct-cicd-ica1:v0.1 .
+
+    - name: Run the Docker Image
+      run: docker run -d --name ica1 -p 8080:8080 apinyarr/devops-doct-cicd-ica1:v0.1
+
+    
+
    
