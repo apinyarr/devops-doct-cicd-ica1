@@ -34,16 +34,14 @@ jobs:
 
     - name: Gen Report
       run: |
-          git fetch
-          git checkout ${{ github.job }}-${{ github.run_id }}-${{ github.run_number }}
           touch report
     
     - name: Commit report
       run:  |
-        git checkout ${{ github.job }}-${{ github.run_id }}-${{ github.run_number }}
         git config --global user.name 'Apinya'
         git config --global user.email 'apinyarr@hotmail.com'
-        git commit -am "Add report file"
+        git add report
+        git commit -m "Add report file"
         git push origin ${{ github.job }}-${{ github.run_id }}-${{ github.run_number }}
 
 
