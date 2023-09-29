@@ -34,6 +34,7 @@ jobs:
 
     - name: Gen Report
       run: |
+          git fetch
           git checkout ${{ github.job }}-${{ github.run_id }}-${{ github.run_number }}
           touch report
     
