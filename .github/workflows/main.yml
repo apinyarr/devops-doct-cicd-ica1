@@ -61,7 +61,7 @@ jobs:
       run: docker images
 
     - name: Docker Push
-      run: docker push 
+      run: docker push apinyarr/devops-doct-cicd-ica1:v0.1
 
     - name: Deploy to Google Cloud Run
       id: deploy
