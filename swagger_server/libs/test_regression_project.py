@@ -1,10 +1,10 @@
 import pytest
 import tensorflow as tf
 import numpy as np
-from data_preparation import generate_regression_data
-from model import create_regression_model
-from train import train_regression_model
-from predict import predict_regression
+from .data_preparation import generate_regression_data
+from .model import create_regression_model
+from .train import train_regression_model
+from .predict import predict_regression
 
 @pytest.fixture
 def regression_data():
