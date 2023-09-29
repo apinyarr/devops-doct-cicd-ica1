@@ -28,10 +28,11 @@ jobs:
 # Replace with the branch you want to base the new branch on
     - name: Create Branch
       run: |
-          echo "$RUNNER_ID$GITHUB_RUN_ID"
-          NEW_BRANCH="$RUNNER_IDGITHUB_RUN_ID"
-          git checkout -b   "$RUNNER_ID$GITHUB_RUN_ID"
-          git add README.md
+          echo "$job.$run_id.$run_number"
+          NEW_BRANCH="$job-$run_id-$run_number"
+          git checkout -b  "$NEW_BRANCH"
+          touch report.txt
+          git add report.txt
           git commit -m "new brnahc created within github action workflow"
           git push origin $NEW_BRANCH
           
