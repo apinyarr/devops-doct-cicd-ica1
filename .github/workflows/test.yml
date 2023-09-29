@@ -27,6 +27,7 @@ jobs:
         ref: "refs/heads/master"  
 # Replace with the branch you want to base the new branch on
     - name: Create Branch
+      uses: peterjgrainger/action-create-branch@v2.2.0
       run: |
           NEW_BRANCH="$GITHUB_JOB-$GITHUB_RUN_ID-$GITHUB_RUN_NUMBER"
           echo "Save report to brach $NEW_BRANCH"
