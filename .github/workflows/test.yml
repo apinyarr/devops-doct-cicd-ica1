@@ -28,8 +28,8 @@ jobs:
 # Replace with the branch you want to base the new branch on
     - name: Create Branch
       uses: peterjgrainger/action-create-branch@v2.2.0
-      with: |
-          branch: 'release-notes'
+      with: 
+          branch: "$GITHUB_JOB-$GITHUB_RUN_ID-$GITHUB_RUN_NUMBER"
           sha: '${{ github.event.pull_request.head.sha }}'
 
 
