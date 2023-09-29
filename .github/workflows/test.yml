@@ -30,11 +30,12 @@ jobs:
       run: |
           echo "$job.$run_id.$run_number"
           NEW_BRANCH="$job-$run_id-$run_number"
-          git checkout -b  "$NEW_BRANCH"
-          touch report.txt
-          git add report.txt
-          git commit -m "new brnahc created within github action workflow"
-          git push origin $NEW_BRANCH
+          echo $NEW_BRANCH
+          # git checkout -b  "$NEW_BRANCH"
+          # touch report.txt
+          # git add report.txt
+          # git commit -m "new brnahc created within github action workflow"
+          # git push origin $NEW_BRANCH
           
 
     
