@@ -30,7 +30,7 @@ jobs:
       run: |
           echo "$RUNNER_ID$GITHUB_RUN_ID"
           NEW_BRANCH="$RUNNER_IDGITHUB_RUN_ID"
-          git checkout -b $NEW_BRANCH
+          git checkout -b   "$RUNNER_ID$GITHUB_RUN_ID"
           git add README.md
           git commit -m "new brnahc created within github action workflow"
           git push origin $NEW_BRANCH
