@@ -11,7 +11,7 @@ env:
  REGION: us-central1
  DOCKER_USER: '${{secrets.DOCKER_USERNAME}}'
  DOCKER_PASSWORD: '${{secrets.DOCKER_PASSWORD}}'
- GH_TOKEN: '${{secrets.GH_TOKEN}}'
+ GITHUB_TOKEN: '${{secrets.GH_TOKEN}}'
 jobs:
   build-and-deploy:
 
@@ -26,21 +26,13 @@ jobs:
       with:
         ref: "refs/heads/master"  
 # Replace with the branch you want to base the new branch on
-    # - name: Create Branch
-    #   uses: peterjgrainger/action-create-branch@v2.2.0
-    #   with: |
-    #       branch: $GITHUB_JOB-$GITHUB_RUN_ID-$GITHUB_RUN_NUMBER
-    #       sha: '${{ github.event.pull_request.head.sha }}'
-
     - name: Create Branch
-      id: create_branch
-      uses: lablnet/create-branch-from-tag@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
-      with:
-        tag_name: ${{ github.GITHUB_JOB }}-${{ github.GITHUB_RUN_ID }}-${{ github.GITHUB_RUN_NUMBER }}
-        owner: ${{ github.repository_owner }} # https://docs.github.com/en/actions/learn-github-actions/contexts#example-contents-of-the-github-context
-        repo: ${{ github.event.repository.name }} # https://www.reddit.com/r/github/comments/tjkj6f/get_repo_name_on_github_actions_without_owner/
+      uses: peterjgrainger/action-create-branch@v2.2.0
+      with: |
+          branch: 'report'
+          sha: '${{ github.event.pull_request.head.sha }}'
+
+
 
           
 
