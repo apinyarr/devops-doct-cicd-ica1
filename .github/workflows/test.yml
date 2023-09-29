@@ -30,7 +30,7 @@ jobs:
       run: |
           NEW_BRANCH="$GITHUB_JOB-$GITHUB_RUN_ID-$GITHUB_RUN_NUMBER"
           echo "Save report to brach $NEW_BRANCH"
-          brach: "$NEW_BRANCH"
+          branch: "$NEW_BRANCH"
           sha: '${{ github.event.pull_request.head.sha }}'
           # git checkout -b  "$NEW_BRANCH"
           # touch report.txt
