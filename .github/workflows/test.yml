@@ -23,12 +23,13 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
-
+      with:
+        ref: "refs/heads/master"  
+# Replace with the branch you want to base the new branch on
     - name: Create Branch
       run: |
           echo "$RUNNER_ID$GITHUB_RUN_ID"
           NEW_BRANCH="$RUNNER_IDGITHUB_RUN_ID"
-          curl -X POST -H "Authorization: token $GH_TOKEN" -d '{"ref": "refs/heads/'"$NEW_BRANCH"'", "sha": "main"}' "https://api.github.com/repos/${{ github.repository }}/git/refs"
           git checkout -b $NEW_BRANCH
           git add README.md
           git commit -m "new brnahc created within github action workflow"
