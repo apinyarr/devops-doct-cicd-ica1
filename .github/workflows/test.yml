@@ -29,15 +29,9 @@ jobs:
     - name: Create Branch
       uses: peterjgrainger/action-create-branch@v2.2.0
       with: |
-          # NEW_BRANCH="$GITHUB_JOB-$GITHUB_RUN_ID-$GITHUB_RUN_NUMBER"
-          # echo "Save report to brach $NEW_BRANCH"
           branch: "$GITHUB_JOB-$GITHUB_RUN_ID-$GITHUB_RUN_NUMBER"
           sha: '${{ github.event.pull_request.head.sha }}'
-          # git checkout -b  "$NEW_BRANCH"
-          # touch report.txt
-          # git add report.txt
-          # git commit -m "new brnahc created within github action workflow"
-          # git push origin $NEW_BRANCH
+
           
 
     
