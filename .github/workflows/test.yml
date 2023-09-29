@@ -34,10 +34,12 @@ jobs:
 
     - name: Gen Report
       run: |
+          git checkout '${{ github.job }}-${{ github.run_id }}-${{ github.run_number }}'
           touch report
     
     - name: Commit report
       run:  |
+        git checkout '${{ github.job }}-${{ github.run_id }}-${{ github.run_number }}'
         git config --global user.name 'Apinya'
         git config --global user.email 'apinyarr@hotmail.com'
         git commit -am "Add report file"
