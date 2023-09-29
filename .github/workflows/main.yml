@@ -69,7 +69,7 @@ jobs:
       with: 
         service: ${{env.SERVICE}}
         region: ${{env.REGION}}
-        image: apinyarr/devops-doct-cicd-ica1:v0.1:main
+        image: apinyarr/devops-doct-cicd-ica1:v0.1
 
     - name: Show output
       run: echo ${{steps.deploy.outputs.url }}
