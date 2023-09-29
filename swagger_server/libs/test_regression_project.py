@@ -15,7 +15,7 @@ def regression_data():
 def regression_model(regression_data):
     X_train, y_train = regression_data
     model = create_regression_model(X_train.shape[1:])
-    train_regression_model(model, X_train, y_train, epochs=100, batch_size=32)
+    train_regression_model(model, X_train, y_train, epochs=200, batch_size=32)
     return model
 
 def test_regression_data_preparation(regression_data):
