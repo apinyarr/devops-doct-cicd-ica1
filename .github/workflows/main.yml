@@ -22,6 +22,6 @@ jobs:
       run: pip install -r requirements.txt
 
     - name: Check Pytest
-      run: pytest ./swagger_server/libs/tests/test_regression_project.py
+      run: pytest ./swagger_server/libs/test_regression_project.py
 
    
