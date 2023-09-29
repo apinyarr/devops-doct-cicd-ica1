@@ -1,10 +1,10 @@
 import pytest
 import tensorflow as tf
 import numpy as np
-from swagger_server.libs.data_preparation import generate_regression_data
-from swagger_server.libs.model import create_regression_model
-from swagger_server.libs.train import train_regression_model
-from swagger_server.libs.predict import predict_regression
+from data_preparation import generate_regression_data
+from model import create_regression_model
+from train import train_regression_model
+from predict import predict_regression
 
 @pytest.fixture
 def regression_data():
