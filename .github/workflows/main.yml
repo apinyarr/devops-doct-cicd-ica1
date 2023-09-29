@@ -37,8 +37,7 @@ jobs:
     - name: Install Requirements
       run: pip install -r requirements.txt
 
-    - name: building the code and storing the output
-      run: python ./swagger_server/libs/ > output.log
+    
 
   # We looked in to market place for this step and we found most of them will be duplicated steps so we checked there step and we used only one step from their defined actions
     - name: Check Pytest
