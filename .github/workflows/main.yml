@@ -56,9 +56,7 @@ jobs:
     - name: Build Docker Image
       run: docker build -t apinyarr/devops-doct-cicd-ica1:v0.1 .
 
-    - name: Docker tag
-      run: docker tag  apinyarr/devops-doct-cicd-ica1:v0.1:main $DOCKER_USER/ apinyarr/devops-doct-cicd-ica1:v0.1:main
-
+    
     - name: List images
       run: docker images
 
