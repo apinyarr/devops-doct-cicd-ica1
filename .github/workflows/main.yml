@@ -4,9 +4,19 @@ on:
   push:
     branches:
       - master
-
+env:
+ PROJECT_ID: ${{secrets.RUN_PROJECT}}
+ GAR_LOCATION: us-central1
+ SERVICE: smitbackend
+ REGION: us-central1
+ DOCKER_USER: '${{secrets.DOCKER_USERNAME}}'
+ DOCKER_PASSWORD: '${{secrets.DOCKER_PASSWORD}}'
 jobs:
   build-and-deploy:
+
+    permissions:
+     contents: 'read'
+     id-token: 'write'
     runs-on: ubuntu-latest
 
     steps:
@@ -17,6 +27,12 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: '3.x' 
+
+    - name: Google Auth
+      id: auth
+      uses: 'google-github-actions/auth@v0'
+      with:
+        credentials_json: '${{secrets.GCP_CREDENTIALS}}'
         
     - name: Install Requirements
       run: pip install -r requirements.txt
@@ -24,12 +40,43 @@ jobs:
     - name: Check Pytest
       run: pytest ./swagger_server/libs/test_regression_project.py
 
-   # - name: Build Docker Image
-   #   run: docker build -t apinyarr/devops-doct-cicd-ica1:v0.1 .
+    
 
-   # - name: Run the Docker Image
-    #  run: docker run -d --name ica1 -p 8080:8080 apinyarr/devops-doct-cicd-ica1:v0.1
+    - name: Run the Docker Image
+      run: docker run -d --name ica1 -p 8080:8080 apinyarr/devops-doct-cicd-ica1:v0.1
 
+    - name: Docker Auth
+      id: docker-auth
+      uses: 'docker/login-action@v1'
+      with:
+        username: '${{secrets.DOCKER_USERNAME}}'
+        password: '${{secrets.DOCKER_PASSWORD}}'
+
+    - name: Docker Login
+      run: docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+
+    - name: Build Docker Image
+      run: docker build -t apinyarr/devops-doct-cicd-ica1:v0.1 .
+
+    - name: Docker tag
+      run: docker tag  apinyarr/devops-doct-cicd-ica1:v0.1:main $DOCKER_USER/ apinyarr/devops-doct-cicd-ica1:v0.1:main
+
+    - name: List images
+      run: docker images
+
+    - name: Docker Push
+      run: docker push 
+
+    - name: Deploy to Google Cloud Run
+      id: deploy
+      uses: google-github-actions/deploy-cloudrun@v0
+      with: 
+        service: ${{env.SERVICE}}
+        region: ${{env.REGION}}
+        image: apinyarr/devops-doct-cicd-ica1:v0.1:main
+
+    - name: Show output
+      run: echo ${{steps.deploy.outputs.url }}
     
 
    
