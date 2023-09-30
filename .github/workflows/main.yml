@@ -37,15 +37,29 @@ jobs:
     - name: Install Requirements
       run: pip install -r requirements.txt
 
-    
+  
+    - name: Create Release Branch
+      uses: peterjgrainger/action-create-branch@v2.2.0
+      with: 
+          branch: 'release-${{ github.run_id }}-${{ github.run_number }}'
+          sha: '${{ github.event.pull_request.head.sha }}'
 
   # We looked in to market place for this step and we found most of them will be duplicated steps so we checked there step and we used only one step from their defined actions
-    - name: Check Pytest
-      run: pytest ./swagger_server/libs/test_regression_project.py --cov=./ --cov-report=xml --cov-report=html --doctest-modules --junitxml=junit/test-results.xml
+    - name: Execute Code Coverage Test using Pytest
+      run: |
+        git fetch
+        git checkout release-${{ github.run_id }}-${{ github.run_number }}
+        pytest ./swagger_server/libs/test_regression_project.py --cov=./ --cov-report=html --doctest-modules 
 
+    - name: Commit Coverage Test Report
+      run:  |
+        git checkout release-${{ github.run_id }}-${{ github.run_number }}
+        git config --global user.name 'Apinya'
+        git config --global user.email 'apinyarr@hotmail.com'
+        git add ./swagger_server/libs/htmlcov
+        git commit -m "Add report folder"
+        git push origin release-${{ github.run_id }}-${{ github.run_number }}
     
-
-
     - name: Docker Auth
       id: docker-auth
       uses: 'docker/login-action@v1'
