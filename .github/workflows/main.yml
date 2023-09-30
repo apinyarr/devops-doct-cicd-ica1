@@ -58,7 +58,7 @@ jobs:
         git checkout release-${{ github.run_id }}-${{ github.run_number }}
         git config --global user.name 'Apinya'
         git config --global user.email 'apinyarr@hotmail.com'
-        git add ./swagger_server/libs/htmlcov
+        git add ./htmlcov
         git commit -m "Add report folder"
         git push origin release-${{ github.run_id }}-${{ github.run_number }}
     
