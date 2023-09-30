@@ -38,12 +38,11 @@ jobs:
     
     - name: Commit report
       run:  |
-        git fetch
         git config --global user.name 'Apinya'
         git config --global user.email 'apinyarr@hotmail.com'
         git add report
         git commit -m "Add report file"
-        git push origin ${{ github.job }}-${{ github.run_id }}-${{ github.run_number }}
+        git push 
 
 
 
