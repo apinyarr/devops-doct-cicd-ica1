@@ -34,7 +34,7 @@ jobs:
 
     - name: Gen Report
       run: |
-          touch report
+          touch report_2
     
     - name: Commit report
       run:  |
