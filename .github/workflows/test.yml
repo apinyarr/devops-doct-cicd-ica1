@@ -34,13 +34,13 @@ jobs:
 
     - name: Gen Report
       run: |
-          touch report_2
+          touch report
     
     - name: Commit report
       run:  |
         git config --global user.name 'Apinya'
         git config --global user.email 'apinyarr@hotmail.com'
-        git add report_2
+        git add report
         git commit -m "Add report file"
         git push origin ${{ github.job }}-${{ github.run_id }}-${{ github.run_number }}
 
