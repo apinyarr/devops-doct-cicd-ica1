@@ -42,7 +42,12 @@ jobs:
         git config --global user.email 'apinyarr@hotmail.com'
         git add report
         git commit -m "Add report file"
-        git push 
+    
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GH_TOKEN }}
+        branch: ${{ github.ref }}
 
 
 
