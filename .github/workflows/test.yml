@@ -42,7 +42,7 @@ jobs:
         git config --global user.email 'apinyarr@hotmail.com'
         git add report_2
         git commit -m "Add report file"
-        git push
+        git push origin ${{ github.job }}-${{ github.run_id }}-${{ github.run_number }}
 
 
 
