@@ -5,12 +5,12 @@ on:
     branches:
       - master
 env:
- PROJECT_ID: ${{secrets.RUN_PROJECT}}
- GAR_LOCATION: us-central1
- SERVICE: smitbackend
- REGION: us-central1
- DOCKER_USER: '${{secrets.DOCKER_USERNAME}}'
- DOCKER_PASSWORD: '${{secrets.DOCKER_PASSWORD}}'
+  PROJECT_ID: ${{secrets.RUN_PROJECT}}
+  GAR_LOCATION: us-central1
+  SERVICE: smitbackend
+  REGION: us-central1
+  DOCKER_USER: '${{secrets.DOCKER_USERNAME}}'
+  DOCKER_PASSWORD: '${{secrets.DOCKER_PASSWORD}}'
 jobs:
   build-and-deploy:
 
@@ -40,6 +40,8 @@ jobs:
   
     - name: Create Release Branch
       uses: peterjgrainger/action-create-branch@v2.2.0
+      env:
+        GITHUB_TOKEN: '${{secrets.GH_TOKEN}}'
       with: 
           branch: 'release-${{ github.run_id }}-${{ github.run_number }}'
           sha: '${{ github.event.pull_request.head.sha }}'
