@@ -30,4 +30,4 @@ jobs:
       - name: Test artifact
         run: |
           ls -alrth
-          at file1.txt
+          cat file1.txt
