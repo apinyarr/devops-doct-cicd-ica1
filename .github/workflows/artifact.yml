@@ -33,7 +33,7 @@ jobs:
           cat file1.txt
 
   use_artifacts_from_other_job:
-
+    needs: generate_file
     runs-on: ubuntu-latest
 
     steps:
