@@ -60,9 +60,9 @@ jobs:
         with:
           path: ~/.github
           key: my_github_cache
-        restore-keys: |
-          my_github_
-          my_
+          restore-keys: |
+            my_github_
+            my_
 
       - if: ${{ steps.cache-github.outputs.cache-hit != 'true' }}
         name: Is cache hit
