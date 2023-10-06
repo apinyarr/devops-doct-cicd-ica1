@@ -28,4 +28,4 @@ jobs:
           name: hello_world_file
 
       - name: Test artifact
-        run: cat hello_world_file
+        run: ls -alrth
