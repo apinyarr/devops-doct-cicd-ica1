@@ -68,5 +68,5 @@ jobs:
         name: Is cache hit
         continue-on-error: true
         run: |
-          echo ${{ steps.cache-github.outputs.cache-hit != 'true' }}
+          echo ${{ steps.cache-github.outputs.cache-hit }}
           ls -alrth
