@@ -16,8 +16,8 @@ jobs:
         run: echo 'hello world' > file1.txt
 
       - name: Upload artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: hellow_world_file
-        path: file1.txt
+        uses: actions/upload-artifact@v3
+        with:
+          name: hellow_world_file
+          path: file1.txt
 
