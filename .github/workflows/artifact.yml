@@ -1,0 +1,23 @@
+---
+name: Working with artifacts
+
+on:
+  push:
+    branches:
+      - play-with-artifacts
+    
+jobs:
+  generate_file:
+    
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Create file
+        run: echo 'hello world' > file1.txt
+
+      - name: Upload artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: hellow_world_file
+        path: file1.txt
+
