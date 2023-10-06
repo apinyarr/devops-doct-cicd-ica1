@@ -46,3 +46,25 @@ jobs:
         run: |
           ls -alrth
           cat file1.txt
+
+  test_cache:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Cache .github
+        id: cache-github
+        uses: actions/cache@v3
+        with:
+          path: ~/.github
+          key: my_github_cache
+        restore-keys: |
+          my_github_
+          my_
+
+      - if: ${{ steps.cache-github.outputs.cache-hit != 'true' }}
+        name: Is cache hit
+        continue-on-error: true
+        run: echo 'cache not hit'
