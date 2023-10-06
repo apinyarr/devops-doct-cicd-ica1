@@ -18,6 +18,14 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
-          name: hellow_world_file
+          name: hello_world_file
           path: file1.txt
+          retention-days: 1
 
+      - name: Download artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: hello_world_file
+
+      - name: Test artifact
+        run: cat hello_world_file
